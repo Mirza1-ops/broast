@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mr Broast – Taste And Spice In Every Bite</title>
+
+<meta name="description" content="Mr Broast brings the fiery taste of spicy broasted chicken to Pakistan. Burgers, wraps, pizzas & more. Taste And Spice In Every Bite!">
+<meta property="og:title" content="Mr Broast – Taste And Spice In Every Bite">
+<meta property="og:description" content="Taste the legendary spicy broast inspired by Al Baik. Visit our branches in Sarai Alamgir & Jhelum.">
+<meta property="og:image" content="menu-image.jpg">
+<meta property="og:type" content="website">
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* Base Styles */
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Montserrat',sans-serif;
+  background:#1e1e1e; /* Set to dark by default for the look */
+  color:#eee;
+  scroll-behavior:smooth;
+}
+img{max-width:100%;border-radius:10px}
+
+/* ---------- Hero (UPDATED FOR FULL IMAGE BACKGROUND) ---------- */
+header{
+  position:relative;
+  height:85vh;
+  overflow:hidden;
+  background-image: url('mr broast.png'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  top:40%;
+  color:#fff;
+  padding:0 20px;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.9); 
+}
+.hero-content h1{
+  font-size:3.5rem; 
+  font-weight:700;
+  letter-spacing:2px
+}
+.hero-content p{
+  font-size:1.6rem; 
+  margin-top:15px
+}
+.order-btn{
+  display:inline-block;margin-top:25px;background:#dc143c;color:#fff;
+  padding:14px 28px;border-radius:40px;text-decoration:none;
+  font-weight:700;transition:0.3s
+}
+.order-btn:hover{background:#a50f2c;transform:scale(1.05)}
+
+/* ---------- 2. Top-Right Collapsible Menu Styles ---------- */
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1002; /* Above everything but the modal */
+    background: #dc143c;
+    color: #fff;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+.menu-toggle:hover {
+    transform: scale(1.05);
+}
+
+.sidebar-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 250px;
+    background: rgba(30, 30, 30, 0.95);
+    backdrop-filter: blur(8px);
+    z-index: 1001;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    padding-top: 70px; /* Space for the menu toggle button */
+    overflow-y: auto;
+}
+
+.sidebar-menu.open {
+    transform: translateX(0);
+}
+
+.sidebar-menu h4 {
+    color: #dc143c;
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #444;
+}
+
+.sidebar-menu a {
+    display: block;
+    padding: 12px 20px;
+    color: #f5f5f5;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+}
+
+.sidebar-menu a:hover {
+    background: #dc143c;
+    color: #fff;
+}
+
+
+/* ---------- Sections and Menu Grid ---------- */
+section{padding:70px 20px;max-width:1100px;margin:auto}
+section h2{text-align:center;margin-bottom:25px;color:#dc143c}
+
+.menu-category-header {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #eee;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.menu-category-header span {
+  width: 20px;
+  height: 20px;
+  background: #dc143c;
+  border-radius: 4px;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+  gap: 30px;
+}
+
+.menu-item {
+  display: block; 
+  text-align: center;
+  background: #1e1e1e; 
+  padding: 15px 15px 25px;
+  border-radius: 4px;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer; 
+  border: 1px solid #333;
+}
+.menu-item:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 5px 15px rgba(220, 20, 60, 0.2); 
+}
+
+/* BALANCED IMAGES */
+.menu-item img {
+  width: 100%;
+  height: 180px; 
+  object-fit: cover; 
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.menu-details h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #eee; 
+  min-height: 2.2rem; 
+  line-height: 1.1;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.price-tag {
+  color: #fff;
+  background-color: #dc143c; 
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  position: absolute; 
+  top: 0;
+  right: 0;
+}
+
+/* ---------- Cart ---------- */
+#cart{
+  position:fixed;top:90px;right:20px;width:280px;
+  background:#2a2a2a; 
+  border-radius:10px;padding:15px;
+  max-height:70vh;overflow-y:auto;
+  box-shadow:0 4px 15px rgba(0,0,0,0.4);z-index:1000;
+  color: #eee;
+}
+#cart h3{text-align:center;margin-bottom:10px;color:#dc143c}
+#cart ul{list-style:none;padding:0;margin:0}
+#cart ul li{
+    margin:10px 0;
+    font-size:0.9rem;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #333;
+}
+#cart ul li button { 
+    background: none; 
+    color: #dc143c; 
+    border: none; 
+    cursor: pointer; 
+    font-size: 1rem;
+    font-weight: 700;
+    float: right;
+    margin-left: 10px;
+}
+#cart .total{margin-top:10px;font-weight:700;text-align:center}
+#cart .checkout{
+  display:block;background:#dc143c;color:#fff;text-align:center;
+  padding:10px;margin-top:10px;border-radius:6px;text-decoration:none;
+}
+#cart .checkout:hover{background:#a50f2c}
+
+/* ---------- ITEM OVERVIEW MODAL ---------- */
+.modal-overlay {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1003; /* Above sidebar */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: #2a2a2a;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.7);
+    color: #eee;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #dc143c;
+    cursor: pointer;
+}
+
+.modal-header h3 {
+    text-align: center;
+    color: #dc143c;
+    margin-bottom: 15px;
+}
+
+.modal-item-details {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.modal-item-details img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.modal-options {
+    border-top: 1px solid #444;
+    padding-top: 15px;
+}
+
+.option-group {
+    margin-bottom: 15px;
+}
+
+.option-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.option-group input[type="checkbox"] {
+    margin-right: 10px;
+    accent-color: #dc143c; 
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.modal-footer .add-to-cart-btn {
+    background: #dc143c;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: background 0.3s;
+}
+
+.modal-footer .add-to-cart-btn:hover {
+    background: #a50f2c;
+}
+
+.modal-price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #eee;
+}
+
+
+@media(max-width:600px){
+  .hero-content h1{font-size:2.5rem} 
+  .hero-content p{font-size:1.2rem} 
+  .menu-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  .modal-item-details {
+      flex-direction: column;
+      text-align: center;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hero-content" data-aos="zoom-in">
+    <h1>MR BROAST</h1>
+    <p>🔥Taste And Spice In Every Bite🔥</p>
+   <a class="order-btn"
+        href="https://api.whatsapp.com/send?phone=923115617500&text=Hi%20Mr%20Broast,%20I%20want%20to%20place%20an%20order!"
+        target="_blank">Order on WhatsApp</a>
+  </div>
+</header>
+
+<button class="menu-toggle" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i>
+</button>
+
+<div class="sidebar-menu" id="sidebarMenu">
+    <h4>Menu Categories</h4>
+    <a href="#intro" onclick="toggleMenu()">Intro</a>
+    <div id="categoryLinks"></div> 
+    <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+<section id="intro" data-aos="fade-up">
+  <h2>Introduction to Mr Broast</h2>
+  <p>Inspired by the legendary AL BAIK flavors of the Arab world, Mr Broast brings
+  that fiery, unforgettable experience to Pakistan—a true paradise for spice lovers.</p>
+</section>
+
+<section id="ownership" data-aos="fade-up">
+  <h2>Ownership</h2>
+  <p>Founded by Mr. Taseer, a former resident of Saudi Arabia and a lifelong fan of Al Baik,
+  Mr Broast began as a passion project. The first branch opened in Sarai Alamgir and,
+  with Allah’s blessings, quickly grew into a beloved chain.</p>
+</section>
+
+<section id="menu" data-aos="fade-up">
+  <h2>Main Menu</h2>
+  <div id="menuContainer"></div>
+</section>
+
+<section id="contact" data-aos="fade-up">
+  <h2>Contact & Visit Us</h2>
+  <div class="contact-info" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;">
+    <div><strong>Sarai Alamgir Branch</strong><br>Jameel Arcade, Second Floor, Pakistan</div>
+    <div><strong>Jhelum Branch</strong><br>Citi Housing Society, Jhelum</div>
+    <div><strong>Phone</strong><br>0311-5617500</div>
+    <div><strong>Instagram</strong><br>
+      <a href="https://www.instagram.com/mr.broast.pk" target="_blank">@mr.broast.pk</a>
+    </div>
+  </div>
+</section>
+
+<footer style="background:#8b0000;color:#fff;text-align:center;padding:25px 10px;margin-top:60px;">
+  &copy; 2024 Mr Broast. All rights reserved.
+</footer>
+
+<div id="cart">
+  <h3>Your Order</h3>
+  <ul id="cartItems"></ul>
+  <div class="total" id="cartTotal">Total: 0 PKR</div>
+  <a href="#" id="checkoutBtn" class="checkout">Checkout via WhatsApp</a>
+</div>
+
+<div class="modal-overlay" id="itemModal" onclick="if(event.target.id === 'itemModal') closeModal()">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div class="modal-header">
+            <h3 id="modalItemName">Item Name</h3>
+        </div>
+        <div class="modal-item-details">
+            <img id="modalItemImage" src="" alt="Item">
+            <div>
+                <p>Base Price: <span id="modalItemBasePrice" style="font-weight: bold; color: #dc143c;"></span> PKR</p>
+            </div>
+        </div>
+
+        <div class="modal-options">
+            <p style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;">Customize Your Order:</p>
+
+            <div id="dynamicOptionsContainer">
+                <div id="burgerOptions" class="option-group" style="display:none;">
+                    <label>
+                        <input type="checkbox" id="extraCheese" value="90" onchange="updateModalPrice()">
+                        Extra Cheese (+90 PKR)
+                    </label>
+                    <label>
+                        <input type="checkbox" id="makeSpicy" value="0" onchange="updateModalPrice()">
+                        Make it Spicy!
+                    </label>
+                </div>
+
+                <div id="generalOptions" class="option-group" style="display:none;">
+                    <label>
+                        <input type="checkbox" id="lessSpicy" value="0" onchange="updateModalPrice()">
+                        Make it Less Spicy
+                    </label>
+                    <label>
+                        <input type="checkbox" id="makeSpicyGeneral" value="0" onchange="updateModalPrice()">
+                        Make it Extra Spicy!
+                    </label>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="modal-footer">
+            <span class="modal-price">Total: <span id="modalItemCurrentPrice">0</span> PKR</span>
+            <button class="add-to-cart-btn" onclick="addItemToCartFromModal()">Add to Order</button>
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+AOS.init({ duration:800, once:true });
+
+// Menu Data (IDs are prefixed to identify category)
+const menuData = {
+  "Burgers":[
+    {id: 'B001', name:"Patty Burger", price:390, img:"patty burger.jpg"},
+    {id: 'B002', name:"Zinger Burger", price:490, img:"zingerburger.jpg"},
+    {id: 'B003', name:"Chicken Fillet Burger", price:510, img:"fillet burger.jpg"},
+    {id: 'B004', name:"Single Maza", price:490, img:"single maza.jpg"},
+    {id: 'B005', name:"Chicken Tender", price:550, img:"tender burger.jpg"},
+    {id: 'B006', name:"Double Maza", price:550, img:"double maza.jpg"},
+  ],
+  "Burger Deals":[
+    {id: 'D007', name:"Zinger Burger Deal", price:650, img:"zingerburger.jpg"},
+    {id: 'D008', name:"Patty Burger Deal", price:590, img:"patty burger.jpg"},
+    {id: 'D009', name:"Chick Fillet Burger Deal", price:710, img:"fillet burger.jpg"},
+    {id: 'D010', name:"Single Maza Deal", price:650, img:"single maza.jpg"},
+    {id: 'D011', name:"Chick Tender Burger Deal", price:750, img:"tender burger.jpg"},
+    {id: 'D012', name:"Double Maza Deal", price:750, img:"double maza.jpg"},
+  ], 
+  "Broast Deals":[
+    {id: 'R013', name:"Quarter (1 Leg + 1 Thigh)", price:825, img:"broast.jpg"},
+    {id: 'R014', name:"Half (2 Legs + 2 Thighs)", price:1390, img:"broast.jpg"},
+    {id: 'R015', name:"Full (4 Legs + 4 Thighs)", price:2590, img:"broast.jpg"},
+    {id: 'R016', name:"Hot Duos", price:1490, img:"broast.jpg"},
+    {id: 'R017', name:"4x4", price:2690, img:"broast.jpg"},
+    {id: 'R018', name:"Ultimate Family", price:5390, img:"broast.jpg"},
+    {id: 'R019', name:"Big Fat Party", price:10390, img:"broast.jpg"},
+  ],
+  "Arabian Shawarma & Deals":[
+    {id: 'S020', name:"Arabian Shawarma", price:825, img:"broast.jpg"},  
+    {id: 'S021', name:"Single(1 shawarma+fries&Reg Drink)", price:250, img:"broast.jpg"},
+    {id: 'S022', name:"Duos(2 shawarma+fries&drink)", price:430, img:"broast.jpg"},
+    {id: 'S023', name:"Thrilling(3 shawarma+fries&1 ltr)", price:580, img:"broast.jpg"},
+    {id: 'S024', name:"4x4(4 shawarma+fries&1.5 ltr)", price:720, img:"broast.jpg"},
+    {id: 'S025', name:"Family(8 shawarma+fries&2.25 ltr)", price:1400, img:"broast.jpg"},
+  ],
+  "Tameya Falafel Deals":[
+    {id: 'T026', name:"Ta'ameya Falafel", price:350, img:"broast.jpg"},
+    {id: 'T027', name:"Single(1 tameya+fries&reg drink)", price:500, img:"broast.jpg"},
+    {id: 'T028', name:"Duos(2 tameya+fries&drink)", price:830, img:"broast.jpg"},
+    {id: 'T029', name:"Thrilling(3 tameya+fries&1 ltr)", price:1180, img:"broast.jpg"},
+    {id: 'T030', name:"4x4(4 tameya+fries&1.5 ltr)", price:1570, img:"broast.jpg"},
+    {id: 'T031', name:"Family(8 tameya+fries&2.25 ltr)", price:3130, img:"broast.jpg"},
+  ],
+  "Fries&More":[ // Excluded from customization for simplicity
+    {id: 'F032', name:"Medium Fries", price:280, img:"fries.jpg"},
+    {id: 'F033', name:"Large Fries", price:430, img:"fries.jpg"},
+    {id: 'F034', name:"Masala Fries(M)", price:300, img:"masala fries.jpg"},
+    {id: 'F035', name:"Masala Fries(L)", price:450, img:"masala fries.jpg"},
+    {id: 'F036', name:"Mr Broast Special Fries (M)", price:450, img:"special.jpg"},
+    {id: 'F037', name:"Mr Broast Special Fries (L)", price:650, img:"special.jpg"},
+    {id: 'F038', name:"8 Nuggets", price:360, img:"nuggets.jpg"},
+    {id: 'F039', name:"16 Nuggets", price:650, img:"nuggets.jpg"},
+    {id: 'F040', name:"24 Nuggets", price:1290, img:"nuggets.jpg"},
+  ],
+  "Extras & Drinks":[ // Excluded from customization for simplicity
+    {id: 'E041', name:"Cheese Slice", price:90, img:"cheese slice.jpg"},
+    {id: 'E042', name:"Garlic Mayo", price:100, img:"garlic mayo.jpg"},
+    {id: 'E043', name:"Honey Mustard", price:100, img:"honey mustard.jpg"},
+    {id: 'E044', name:"peri peri Sauce", price:100, img:"peri peri.jpg"},
+    {id: 'E045', name:"Bun", price:70, img:"bun.jpg"},
+    {id: 'E046', name:"Mineral Water(300 ml)", price:50, img:"waterbottle.jpg"},
+    {id: 'E047', name:"Mineral Water(500 ml)", price:80, img:"waterbottle.jpg"},
+    {id: 'E048', name:"Mineral Water(1.5 ltr)", price:150, img:"waterbottle.jpg"},
+    {id: 'E049', name:"soft Drink(Tin)", price:120, img:"tincan.jpg"},
+    {id: 'E050', name:"Soft Drink (300ml)", price:100, img:"cokeproducts-3.jpg"},
+    {id: 'E051', name:"Soft Drink (500ml)", price:130, img:"cool-drink-500-ml-500x500.webp"},
+    {id: 'E052', name:"Soft Drink (1L)", price:180, img:"OIP.jfif"},
+    {id: 'E053', name:"Soft Drink (1.5L)", price:230, img:"dink 1.5.jpg"},
+    {id: 'E054', name:"Soft Drink (2.25L)", price:330, img:"drink 2.25.jpg"},
+  ]
+};
+
+// Flatten the menu data for easy lookup
+const allMenuItems = Object.values(menuData).flat().reduce((acc, item) => {
+    acc[item.id] = item;
+    return acc;
+}, {});
+
+const menuContainer = document.getElementById("menuContainer");
+const categoryLinks = document.getElementById("categoryLinks"); // For sidebar
+let cart = [];
+let currentItem = {}; 
+
+// --- Menu Rendering Logic ---
+Object.keys(menuData).forEach((category)=>{
+  const categoryId = category.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  
+  // 2. Populate Sidebar Links
+  const link = document.createElement("a");
+  link.href = `#${categoryId}`;
+  link.textContent = category;
+  link.onclick = toggleMenu; // Close menu on click
+  categoryLinks.appendChild(link);
+
+  // Create Category Header
+  const catHeader = document.createElement("h3");
+  catHeader.id = categoryId;
+  catHeader.className = "menu-category-header";
+  catHeader.innerHTML = `<span></span>${category.toUpperCase()}`;
+  catHeader.setAttribute('data-aos', 'fade-right');
+  menuContainer.appendChild(catHeader);
+
+  // Create Grid Container
+  const grid = document.createElement("div");
+  grid.className = "menu-grid";
+  menuContainer.appendChild(grid);
+
+  // Add Items to Grid
+  menuData[category].forEach(m=>{
+    let div=document.createElement("div");
+    div.className="menu-item";
+    div.setAttribute('data-aos', 'fade-up');
+    div.setAttribute('data-item-id', m.id); 
+    div.onclick = () => openModal(m.id); 
+    div.innerHTML=`
+      <div class="price-tag">Rs ${m.price}</div>
+      <img src="${m.img}" alt="${m.name}">
+      <div class="menu-details">
+        <h4>${m.name}</h4>
+      </div>
+    `;
+    grid.appendChild(div);
+  });
+});
+
+// --- Collapsible Menu Logic ---
+const sidebarMenu = document.getElementById('sidebarMenu');
+function toggleMenu() {
+    sidebarMenu.classList.toggle('open');
+}
+
+
+// --- Modal & Context-Aware Options Logic ---
+const itemModal = document.getElementById('itemModal');
+const modalName = document.getElementById('modalItemName');
+const modalImage = document.getElementById('modalItemImage');
+const modalBasePrice = document.getElementById('modalItemBasePrice');
+const modalCurrentPrice = document.getElementById('modalItemCurrentPrice');
+
+const burgerOptionsDiv = document.getElementById('burgerOptions');
+const generalOptionsDiv = document.getElementById('generalOptions');
+
+const extraCheese = document.getElementById('extraCheese');
+const makeSpicy = document.getElementById('makeSpicy');
+const lessSpicy = document.getElementById('lessSpicy');
+const makeSpicyGeneral = document.getElementById('makeSpicyGeneral');
+
+
+function openModal(itemId) {
+    const item = allMenuItems[itemId];
+    if (!item) return;
+
+    currentItem = { ...item, customization: [] }; 
+    
+    // Reset all options
+    extraCheese.checked = false;
+    makeSpicy.checked = false;
+    lessSpicy.checked = false;
+    makeSpicyGeneral.checked = false;
+    
+    // Hide all options
+    burgerOptionsDiv.style.display = 'none';
+    generalOptionsDiv.style.display = 'none';
+
+    // 1. Show context-aware options based on ID prefix
+    const categoryPrefix = itemId.substring(0, 1);
+    const isBurgerOrDeal = categoryPrefix === 'B' || categoryPrefix === 'D';
+    const isMainDish = categoryPrefix === 'R' || categoryPrefix === 'S' || categoryPrefix === 'T';
+    
+    if (isBurgerOrDeal) {
+        burgerOptionsDiv.style.display = 'block';
+    } else if (isMainDish) {
+        generalOptionsDiv.style.display = 'block';
+    }
+    // Note: Fries&More/Extras (F & E) are kept without customization options
+    
+    // Populate Modal
+    modalName.textContent = item.name;
+    modalImage.src = item.img;
+    modalImage.alt = item.name;
+    modalBasePrice.textContent = item.price;
+    
+    // Set initial price and show modal
+    updateModalPrice();
+    itemModal.style.display = 'flex';
+}
+
+function closeModal() {
+    itemModal.style.display = 'none';
+}
+
+function updateModalPrice() {
+    let newPrice = currentItem.price;
+    let customization = [];
+
+    // Reset customization to base price before recalculation
+    const categoryPrefix = currentItem.id.substring(0, 1);
+    const isBurgerOrDeal = categoryPrefix === 'B' || categoryPrefix === 'D';
+
+    if (isBurgerOrDeal) {
+        if (extraCheese.checked) {
+            const cheesePrice = parseInt(extraCheese.value);
+            newPrice += cheesePrice;
+            customization.push(`+Extra Cheese (+${cheesePrice} PKR)`);
+        }
+        if (makeSpicy.checked) {
+            customization.push(`+Make it Spicy`);
+        }
+    } else {
+        if (lessSpicy.checked) {
+            customization.push(`+Less Spicy`);
+        }
+        if (makeSpicyGeneral.checked) {
+            customization.push(`+Extra Spicy`);
+        }
+    }
+
+    // Update the item data and the display
+    currentItem.customPrice = newPrice;
+    currentItem.customization = customization;
+    modalCurrentPrice.textContent = newPrice;
+}
+
+function addItemToCartFromModal() {
+    if (!currentItem.name) return; 
+
+    // Create a cart entry with customizations
+    const cartItem = {
+        name: currentItem.name,
+        price: currentItem.customPrice,
+        customization: currentItem.customization
+    };
+
+    cart.push(cartItem);
+    renderCart();
+    closeModal();
+}
+
+// --- Cart Logic (Unchanged from previous version) ---
+function renderCart(){
+  const list=document.getElementById("cartItems");
+  const total=document.getElementById("cartTotal");
+  list.innerHTML="";
+  let sum=0;
+
+  cart.forEach((c,i)=>{
+    const customizationText = c.customization && c.customization.length > 0
+        ? `<br><small style="color: #ccc; font-style: italic;">(${c.customization.join(', ')})</small>`
+        : '';
+
+    list.innerHTML+=`
+      <li>
+        ${c.name} 
+        ${customizationText} 
+        <span style="float:right;">- ${c.price} PKR</span>
+        <button onclick="removeItem(${i})" title="Remove from Order">❌</button>
+      </li>
+    `;
+    sum+=c.price;
+  });
+
+  total.textContent="Total: "+sum+" PKR";
+
+  const orderList = cart.map(c => {
+      let line = `- ${c.name} (${c.price} PKR)`;
+      if(c.customization && c.customization.length > 0) {
+          line += ` [${c.customization.join(', ')}]`;
+      }
+      return line;
+  }).join("%0A");
+
+ document.getElementById("checkoutBtn").href=
+    `https://api.whatsapp.com/send?phone=923115617500&text=Hi%20Mr%20Broast,%20I%20want%20to%20place%20an%20order:%0A${orderList}%0A%0ATotal:%20${sum}%20PKR%0A%0APlease%20confirm%20my%20order.`;
+}
+
+function removeItem(i){
+  cart.splice(i,1);
+  renderCart();
+}
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
